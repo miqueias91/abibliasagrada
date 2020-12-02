@@ -1,0 +1,68 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-admob-sdk": {
+      "PLAY_SERVICES_VERSION": "11.0.4",
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-clipboard": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-plugin-admob-free": {
+      "ADMOB_APP_ID": "ca-app-pub-7091486462236476~8144821046",
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-plugin-insomnia": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-promise-polyfill": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova-support-google-services": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "cordova.plugins.diagnostic": {
+      "ANDROID_SUPPORT_VERSION": "28.+",
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "phonegap-plugin-multidex": {
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    },
+    "phonegap-plugin-push": {
+      "FCM_VERSION": "11.6.2",
+      "PACKAGE_NAME": "br.com.innovatesoft.abibliasagrada"
+    }
+  },
+  "dependent_plugins": {}
+}

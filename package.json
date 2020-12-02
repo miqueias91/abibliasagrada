@@ -47,7 +47,11 @@
       "cordova-plugin-insomnia": {},
       "cordova-plugin-x-socialsharing": {}
     },
-    "platforms": []
+    "platforms": [
+      "android"
+    ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "cordova-android": "^7.0.0"
+  }
 }
