@@ -16,7 +16,6 @@
        specific language governing permissions and limitations
        under the License.
 */
-
 apply plugin: 'com.android.application'
 
 buildscript {
@@ -29,7 +28,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:4.0.0'
+
     }
 }
 
@@ -144,19 +144,21 @@ cdvBuildRelease.dependsOn {
     return computeBuildTargetName(false)
 }
 
-task cdvPrintProps << {
-    println('cdvCompileSdkVersion=' + cdvCompileSdkVersion)
-    println('cdvBuildToolsVersion=' + cdvBuildToolsVersion)
-    println('cdvVersionCode=' + cdvVersionCode)
-    println('cdvVersionCodeForceAbiDigit=' + cdvVersionCodeForceAbiDigit)
-    println('cdvMinSdkVersion=' + cdvMinSdkVersion)
-    println('cdvBuildMultipleApks=' + cdvBuildMultipleApks)
-    println('cdvReleaseSigningPropertiesFile=' + cdvReleaseSigningPropertiesFile)
-    println('cdvDebugSigningPropertiesFile=' + cdvDebugSigningPropertiesFile)
-    println('cdvBuildArch=' + cdvBuildArch)
-    println('computedVersionCode=' + android.defaultConfig.versionCode)
-    android.productFlavors.each { flavor ->
-        println('computed' + flavor.name.capitalize() + 'VersionCode=' + flavor.versionCode)
+task cdvPrintProps {
+    doLast{
+        println('cdvCompileSdkVersion=' + cdvCompileSdkVersion)
+        println('cdvBuildToolsVersion=' + cdvBuildToolsVersion)
+        println('cdvVersionCode=' + cdvVersionCode)
+        println('cdvVersionCodeForceAbiDigit=' + cdvVersionCodeForceAbiDigit)
+        println('cdvMinSdkVersion=' + cdvMinSdkVersion)
+        println('cdvBuildMultipleApks=' + cdvBuildMultipleApks)
+        println('cdvReleaseSigningPropertiesFile=' + cdvReleaseSigningPropertiesFile)
+        println('cdvDebugSigningPropertiesFile=' + cdvDebugSigningPropertiesFile)
+        println('cdvBuildArch=' + cdvBuildArch)
+        println('computedVersionCode=' + android.defaultConfig.versionCode)
+        android.productFlavors.each { flavor ->
+            println('computed' + flavor.name.capitalize() + 'VersionCode=' + flavor.versionCode)
+        }
     }
 }
 
@@ -165,6 +167,7 @@ android {
     defaultConfig {
         versionCode cdvVersionCode ?: new BigInteger("" + privateHelpers.extractIntFromManifest("versionCode"))
         applicationId privateHelpers.extractStringFromManifest("package")
+        minSdkVersion 19
 
         if (cdvMinSdkVersion != null) {
             minSdkVersion cdvMinSdkVersion
@@ -272,6 +275,8 @@ dependencies {
     compile "com.android.support:support-v13:26.+"
     compile "me.leolin:ShortcutBadger:1.1.17@aar"
     compile "com.google.firebase:firebase-messaging:11.6.2"
+    //implementation 'com.google.firebase:firebase-ads:18.0.0'
+
     // SUB-PROJECT DEPENDENCIES END
 }
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">210414208734-np49cdr4un78j0vj4snovcqvuh5ifjkj.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://a-biblia-sagrada.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">210414208734</string>
+    <string name="google_api_key" translatable="false">AIzaSyCsux93dfYkOBOd0iQhWITr6qsNU87ozsc</string>
+    <string name="google_app_id" translatable="false">1:210414208734:android:ea7bb2ebff4ce74d54e44f</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCsux93dfYkOBOd0iQhWITr6qsNU87ozsc</string>
+    <string name="google_storage_bucket" translatable="false">a-biblia-sagrada.appspot.com</string>
+</resources>

@@ -33,7 +33,7 @@
         window.plugins.insomnia.keepAwake();
         admob.banner.config({ 
           id: admobid.banner, 
-          isTesting: false, 
+          isTesting: false,
           autoShow: true, 
         })
         admob.banner.prepare()
@@ -52,20 +52,20 @@
       }, false);
 
       document.addEventListener('admob.banner.events.LOAD_FAIL', function(event) {
-        // alert(JSON.stringify(event))
+         //alert(JSON.stringify(event))
       });
 
       document.addEventListener('admob.interstitial.events.LOAD_FAIL', function(event) {
-        // alert(JSON.stringify(event))
+         //alert(JSON.stringify(event))
       });
 
       document.addEventListener('admob.interstitial.events.LOAD', function(event) {
-        // alert(JSON.stringify(event))
+         //alert(JSON.stringify(event))
         document.getElementsByClassName('showAd').disabled = false
       });
 
       document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
-        // alert(JSON.stringify(event))
+         //alert(JSON.stringify(event))
         admob.interstitial.prepare()
       });
     </script>
