@@ -33,14 +33,14 @@
         window.plugins.insomnia.keepAwake();
         admob.banner.config({ 
           id: admobid.banner, 
-          isTesting: false, 
+          isTesting: true, 
           autoShow: true, 
         })
         admob.banner.prepare()
         
         admob.interstitial.config({
           id: admobid.interstitial,
-          isTesting: false,
+          isTesting: true,
           autoShow: false,
         })
         admob.interstitial.prepare()
@@ -346,7 +346,7 @@
         var lista_marcadores = JSON.parse(localStorage.getItem('lista-versiculos') || '[]');
         if (lista_marcadores) {
           for(var i=0; i<lista_marcadores.length; i++) {
-            app.buscaVersiculo('abs',lista_marcadores[i]['livro']+"||"+lista_marcadores[i]['num_capitulo']+"."+(parseInt(lista_marcadores[i]['num_versiculo'])+0),"textoVersiculo"); 
+            app.buscaVersiculo('nvi',lista_marcadores[i]['livro']+"||"+lista_marcadores[i]['num_capitulo']+"."+(parseInt(lista_marcadores[i]['num_versiculo'])+0),"textoVersiculo"); 
           }   
         }
       }

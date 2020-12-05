@@ -136,7 +136,7 @@ var app = {
     array = JSON.parse(localStorage.getItem('lista-versiculos'));
     if (array) {
       for(var k=0; k < array.length; k++) {
-        if((array[k]['livro'].toLowerCase() == livro.toLowerCase()) && (array[k]['num_capitulo'] == num_capitulo) && (array[k]['num_versiculo'] == num_versiculo)) {
+        if((array[k]['livro'].toLowerCase() === livro.toLowerCase()) && (array[k]['num_capitulo'] == num_capitulo) && (array[k]['num_versiculo'] == num_versiculo)) {
           return array[k]['cor'];
         }
       }   
@@ -426,7 +426,7 @@ var app = {
 
           for(var i = start; i <=  end; i++){
             if (myBook.chapters[obj_v.chapter - 1][i]) {
-                obj_v.text += '<ons-list-item>'+
+                obj_v.text += '<ons-list-item onclick="fn.pushPage({\'id\': \'textoLivro.html\', \'title\': \''+myBook.abbrev+'||'+myBook.name+'||'+myBook.chapters.length+'||'+(parseInt(capitulo))+'\'});">'+
                   '<p style="font-size: 20px;line-height:30px;text-align:justify">'+
                     myBook.chapters[obj_v.chapter - 1][i] +
                   '</p>'+
