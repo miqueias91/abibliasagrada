@@ -3,8 +3,8 @@
     package="br.com.innovatesoft.abibliasagrada"
     android:hardwareAccelerated="true"
     android:targetSandboxVersion="2"
-    android:versionCode="10000"
-    android:versionName="1.0.0" >
+    android:versionCode="10001"
+    android:versionName="1.0.1" >
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -69,8 +69,7 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:testOnly="true" >
+        android:supportsRtl="true" >
         <activity
             android:name="br.com.innovatesoft.abibliasagrada.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"

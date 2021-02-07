@@ -1,0 +1,4 @@
+#Sun Feb 07 20:45:19 BRT 2021
+base.0=/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

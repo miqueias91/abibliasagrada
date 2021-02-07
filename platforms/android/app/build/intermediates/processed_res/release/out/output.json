@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "applicationId": "br.com.innovatesoft.abibliasagrada",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "PROCESSED_RES"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 10001,
+        "versionName": "1.0.1",
+        "outputFile": "app-release.apk",
+        "fullName": "release",
+        "baseName": "release",
+        "dirName": ""
+      },
+      "path": "resources-release.ap_",
+      "properties": {
+        "packageId": "br.com.innovatesoft.abibliasagrada",
+        "split": "",
+        "minSdkVersion": "19"
+      }
+    }
+  ]
+}
