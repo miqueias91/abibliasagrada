@@ -33,14 +33,14 @@
         window.plugins.insomnia.keepAwake();
         admob.banner.config({ 
           id: admobid.banner, 
-          isTesting: true, 
+          isTesting: false, 
           autoShow: true, 
         })
         admob.banner.prepare()
         
         admob.interstitial.config({
           id: admobid.interstitial,
-          isTesting: true,
+          isTesting: false,
           autoShow: false,
         })
         admob.interstitial.prepare()
@@ -209,24 +209,12 @@
         </div>
       </ons-list-item>
 
-      <ons-list-item onclick="fn.loadLink('https://play.google.com/store/apps/details?id=com.phonegap.calculadorabasic')">
+      <ons-list-item onclick="fn.loadLink('https://cristaonarede.com.br/loja')">
         <div class="left">
-            <i class="fas fa-tasks"></i>
+          <i class="fas fa-store"></i>
         </div>
         <div class="center">
-          Quiz da Bíblia
-        </div>
-        <div class="right">
-          <ons-icon icon="fa-external-link"></ons-icon>
-        </div>
-      </ons-list-item>
-
-      <ons-list-item onclick="fn.loadLink('https://play.google.com/store/apps/details?id=com.innovatesoft.giriasdecrente')">
-        <div class="left">
-            <i class="fas fa-book"></i>
-        </div>
-        <div class="center">
-          Dicionário de Crente
+          Livraria
         </div>
         <div class="right">
           <ons-icon icon="fa-external-link"></ons-icon>
@@ -335,8 +323,8 @@
 
     <script>
       ons.getScriptPage().onInit = function () {
-        //app.registraAcesso('abs/versiculosMarcados.html');
-        //admob.interstitial.show();
+        app.registraAcesso('abs/versiculosMarcados.html');
+        admob.interstitial.show();
         $("#textoVersiculo").html('');
         this.querySelector('#versiculosMarcados_ div.center').textContent = 'Versículos Marcados';
         var lista_marcadores = JSON.parse(localStorage.getItem('lista-versiculos') || '[]');
@@ -447,8 +435,8 @@
             })
           };
         ons.getScriptPage().onInit = function () {
-          //admob.interstitial.show();
-          //app.registraAcesso('abs/configuracao.html');
+          admob.interstitial.show();
+          app.registraAcesso('abs/configuracao.html');
           modo_noturno = JSON.parse(localStorage.getItem('modo-noturno'));
           $("#modo_noturno").attr("checked",modo_noturno);
           
@@ -520,8 +508,8 @@
 
     <script>
       ons.getScriptPage().onInit = function () {
-        //admob.interstitial.show();
-        //app.registraAcesso('abs/palavraDia.html');
+        admob.interstitial.show();
+        app.registraAcesso('abs/palavraDia.html');
         $("#textoVersiculo").html('');
         this.querySelector('#palavraDia_ div.center').textContent = 'Palavra do Dia';
         var versiculos = ['Mt||11.28','Jo||15.7','at||1.8','Fp||1.6','2Sm||22.31','Mt||11.28','Hb||10.23','Fp||1.6','2Pe||1.4','Mt||5.8','Rm||1.6','Mt||10.32','Is||44.3','Jr||29.11','Fp||4.19','Ap||3.20','Ef||1.4','Ef||1.13','Mt||28.19','Jo||14.18','Jo||8.32','Mt||24.35','Sl||126.5','Jo||8.12','Jo||15.16','Hb||13.5','Tg||4.7','Mt||6.33','Jo||10.10','Jr||33.3','at||1.8','Hb||10.35-36','1Jo||5.4','Js||1.9','Js||1.9','Rm||8.1','Sl||31.24','Sl||91.1','Hb||12.1','2Tm||4.7','Rm||12.21','1Ts||5.17','Jo||14.18','Fp||4.12-13','1Co||15.55','Rm||8.38-39','Sl||41.1','Rm||8.31','Fp||4.6','Fp||4.13','Nm||23.19','Js||21.45','Js||23.14','1Jo||2.25','Ez||36.26','1Jo||1.9','1Rs||8.56','Dt||28.9','Jl||2.32','Sl||145.13','2||Pe||1.4','Tg||1.12','Sl||138.4','2Co||7.1','Sl||119.50','2Pe||3.9','Gl||3.16','Jo||16.33','Mt||6.26','Sl||34.10','Mt||6.11','Sl||23.1','Sl||4.8','Is||40.31','Jo||14.27','Lc||12.15','Dt||31.6','Hb||13.6','Rm||8.28','Tg||1.5','Sl||37.4','Mt||17.20','Is||41.10'];
@@ -567,8 +555,8 @@
 
     <script>
         ons.getScriptPage().onInit = function () {
-          //admob.interstitial.show();
-          //app.registraAcesso('abs/capitulosLidos.html');
+          admob.interstitial.show();
+          app.registraAcesso('abs/capitulosLidos.html');
           $("#textoCapitulosLidos").html('');
           this.querySelector('#capitulosLidos_ div.center').textContent = 'Capítulos Lidos';
           var lista_capitulos = JSON.parse(localStorage.getItem('lista-capitulos') || '[]');
@@ -640,7 +628,7 @@
     </div>
     <script>
         ons.getScriptPage().onInit = function () {
-          //app.registraAcesso('abs/biblia.html');
+          app.registraAcesso('abs/biblia.html');
           this.querySelector('#biblia_ div.center').textContent = 'Bíblia Sagrada';
           var abriu_pesquisa_biblia = false
           $( "#botao_pesquisa_biblia" ).click(function() {
@@ -923,8 +911,8 @@
 
     <script>
         ons.getScriptPage().onInit = function () {
-          //admob.interstitial.show();
-          //app.registraAcesso('abs/harpa.html');
+          admob.interstitial.show();
+          app.registraAcesso('abs/harpa.html');
           fn.showDialog('modal-aguarde');
           app.listaHinario();
           var timeoutID = 0;
@@ -1192,7 +1180,7 @@
 
     <script>
         ons.getScriptPage().onInit = function () {
-          //app.registraAcesso('abs/antigoTestamento.html');
+          app.registraAcesso('abs/antigoTestamento.html');
           this.querySelector('#antigoTestamento_ div.center').textContent = 'Antigo Testamento';
         }
     </script>
@@ -1364,7 +1352,7 @@
     </ons-list>
     <script>
         ons.getScriptPage().onInit = function () {
-          //app.registraAcesso('abs/novoTestamento.html');
+          app.registraAcesso('abs/novoTestamento.html');
           this.querySelector('#novoTestamento_ div.center').textContent = 'Novo Testamento';
         }
     </script>
@@ -1394,7 +1382,7 @@
         </div>
         <script>
           ons.getScriptPage().onInit = function () {
-            //admob.interstitial.show();
+            admob.interstitial.show();
             var dados = this.data.title.split('||'); 
             this.querySelector('#conteudoLivro_ div.center').textContent = dados[1];
             $("#conteudoLivro").html('');
@@ -1495,7 +1483,7 @@
           ons.getScriptPage().onInit = function () {
             var dados = this.data.title.split('||'); 
             var ultimoCap = dados[2];
-            //app.registraAcesso('abs/textoLivro.html?livro='+dados[0]+'&cap='+dados[3]);
+            app.registraAcesso('abs/textoLivro.html?livro='+dados[0]+'&cap='+dados[3]);
             this.querySelector('#textoLivro_ div.center').textContent = dados[1]+' '+dados[3];
             //CHAMA DA FUNÇÃO PARA ABRIR MODAL
             fn.showDialog('modal-aguarde');
@@ -1557,7 +1545,7 @@
                 $("#controle_rolagem").css("display","none");
 
                 $("#atual").val(parseInt($("#atual").val())+1)
-                //app.registraAcesso('abs/textoLivro.html?livro='+dados[0]+'&cap='+parseInt($("#atual").val()));
+                app.registraAcesso('abs/textoLivro.html?livro='+dados[0]+'&cap='+parseInt($("#atual").val()));
                 //CHAMA DA FUNÇÃO PARA ABRIR MODAL
                 fn.showDialog('modal-aguarde');
                 var versaoId = window.localStorage.getItem('versao-biblia');
@@ -1578,7 +1566,7 @@
 
                 $("#controle_rolagem").css("display","none");
                 $("#atual").val(parseInt($("#atual").val())-1)
-                //app.registraAcesso('abs/textoLivro.html?livro='+dados[0]+'&cap='+parseInt($("#atual").val()));
+                app.registraAcesso('abs/textoLivro.html?livro='+dados[0]+'&cap='+parseInt($("#atual").val()));
                 //CHAMA DA FUNÇÃO PARA ABRIR MODAL
                 fn.showDialog('modal-aguarde');
                 var versaoId = window.localStorage.getItem('versao-biblia');
@@ -1667,6 +1655,42 @@
               text += 'Versão: A Bíblia Sagrada\nLink: https://bit.ly/3g176iI';
               window.plugins.socialsharing.shareViaTwitter(text);
             });
+
+            $( ".cores" ).click(function() {
+              marcado = $(this).attr('marcado');
+              var cor = $(this).attr('id');
+              var livro = $('#'+id).attr('livro');
+              var num_capitulo = $('#'+id).attr('num_capitulo');
+              var num_versiculo = $('#'+id).attr('num_versiculo');
+        
+              if (marcado==0) {
+                $('#'+id).attr('marcado',1);
+                $('#'+id).attr('txt_marcado',0);
+                $(".botao_controle").css("display","none");
+                $(".cores").css("display","");
+                $('#'+id).css("background","#f5f5f5");
+                lista_versiculos = JSON.parse(localStorage.getItem('lista-versiculos'));
+                app.retirarMarcadorVersiculo(livro, num_capitulo, num_versiculo, lista_versiculos);
+              }
+              else{
+                $(".copiar").css("display","none");
+                $(".compartilha").css("display","none");
+                id = $("[marcado=1]").attr('id');
+                $("#"+id).attr('marcado',0);
+                $('#'+id).attr('txt_marcado',1);
+                $(".cores").css("display","none");
+                $(".botao_controle").css("display","");
+                $("#"+id).css("background",cor);
+                var livro = $('#'+id).attr('livro');
+                var num_capitulo = $('#'+id).attr('num_capitulo');
+                var num_versiculo = $('#'+id).attr('num_versiculo');
+
+                var lista_versiculos = JSON.parse(localStorage.getItem('lista-versiculos') || '[]');
+                lista_versiculos.push({cor: cor, livro: livro, num_capitulo: num_capitulo, num_versiculo: num_versiculo});
+                localStorage.setItem("lista-versiculos", JSON.stringify(lista_versiculos));
+                usar_cores = 0;
+              }      
+            });
           }
         </script>
         <style>
@@ -1687,9 +1711,9 @@
         <div id='conteudoHarpa'></div>
         <script>
         ons.getScriptPage().onInit = function () {
-          //admob.interstitial.show();
+          admob.interstitial.show();
           var dados = this.data.title.split('||'); 
-          //app.registraAcesso('abs/conteudoHarpa.html?livro='+dados[0]);
+          app.registraAcesso('abs/conteudoHarpa.html?livro='+dados[0]);
           this.querySelector('#conteudoHarpa_ div.center').textContent = dados[0]+' - '+dados[1];
           $("#conteudoHarpa").html('');
           app.buscaHinario(dados[0]);
@@ -1717,8 +1741,8 @@
         </div>
     <script>
       ons.getScriptPage().onInit = function () {
-        //admob.interstitial.show();
-        //app.registraAcesso('abs/notificacoes.html');
+        admob.interstitial.show();
+        app.registraAcesso('abs/notificacoes.html');
         this.querySelector('#notificacoes_ div.center').textContent = 'Notificações';
 
 
@@ -1818,7 +1842,7 @@
         </div>
     <script>
       ons.getScriptPage().onInit = function () {
-        //app.registraAcesso('abs/notificacao.html');
+        app.registraAcesso('abs/notificacao.html');
         var dados = this.data.title.split('||'); 
         this.querySelector('#notificacao_ div.center').textContent = dados[0];
         notificacoes = JSON.parse(localStorage.getItem('lista-notificacoes'));
@@ -2011,8 +2035,8 @@
     </div>
     <script>
       ons.getScriptPage().onInit = function () {
-        //admob.interstitial.show();
-        //app.registraAcesso('abs/versoes.html');
+        admob.interstitial.show();
+        app.registraAcesso('abs/versoes.html');
         this.querySelector('#versoes_ div.center').textContent = 'Versões';
         if (!window.localStorage.getItem('versao-biblia')) {
           versaoId = 'nvi';
@@ -2065,6 +2089,7 @@
     </style>
   </ons-page>
 </template>
+
 <template id="cantor.html">
   <ons-page>
     <ons-toolbar id="biblia_">
