@@ -608,6 +608,7 @@ drawable common_google_signin_btn_text_light_normal_background
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_os_notification_fallback_white_24dp
+drawable ic_stat_onesignal_default
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
