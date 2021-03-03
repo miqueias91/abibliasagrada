@@ -8,16 +8,16 @@
         "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/mipmap-xxhdpi/icon.png"
     },
     {
+        "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_stat_onesignal_default.png.flat",
+        "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-xxhdpi/ic_stat_onesignal_default.png"
+    },
+    {
         "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-xhdpi_screen.png.flat",
         "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-port-xhdpi/screen.png"
     },
     {
         "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-xxhdpi_screen.png.flat",
         "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-land-xxhdpi/screen.png"
-    },
-    {
-        "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi_ic_stat_onesignal_default.png.flat",
-        "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-xxhdpi/ic_stat_onesignal_default.png"
     },
     {
         "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/debug/xml_config.xml.flat",
@@ -68,12 +68,12 @@
         "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-xxxhdpi/ic_stat_onesignal_default.png"
     },
     {
-        "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-hdpi_screen.png.flat",
-        "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-port-hdpi/screen.png"
-    },
-    {
         "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-mdpi_screen.png.flat",
         "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-port-mdpi/screen.png"
+    },
+    {
+        "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/debug/drawable-port-hdpi_screen.png.flat",
+        "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-port-hdpi/screen.png"
     },
     {
         "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/debug/drawable-land-hdpi_screen.png.flat",
