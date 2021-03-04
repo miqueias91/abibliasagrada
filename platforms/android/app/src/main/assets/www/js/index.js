@@ -879,6 +879,7 @@ var app = {
   },
   verificaExistenciaUsuario: function(usuario, religiao, nome, email, celular) {
     var uid = window.localStorage.getItem('uid');
+    var playerID = window.localStorage.getItem('playerID');
     if (usuario != "") {
       fn.showDialog('modal-aguarde');
       $.ajax({
@@ -891,6 +892,7 @@ var app = {
           'religiao': religiao,
           'celular': celular,
           'uid': uid,
+          'userId': playerID,
         },
         error: function(e) {
           var timeoutID = 0;
@@ -928,6 +930,8 @@ var app = {
   },
   buscaDadosUsuario: function() {
     var uid = window.localStorage.getItem('uid');
+    var playerID = window.localStorage.getItem('playerID');
+
     if (uid) {
       $.ajax({
         url: "https://www.innovatesoft.com.br/webservice/app/buscaDadosUsuario.php",
@@ -936,6 +940,7 @@ var app = {
         async: true,
         data: {
           'uid': uid,
+          'userId': playerID,
         },
         success: function(a) {
           if (a) {
