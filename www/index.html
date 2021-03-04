@@ -135,24 +135,24 @@
         </div>
       </ons-list-item>  
 
-      <ons-list-item onclick="fn.pushPage({'id': 'configuracao.html', 'title': 'Configuração'})">
+      <ons-list-item onclick="fn.pushPage({'id': 'ajustes.html', 'title': 'Ajustes'})">
         <div class="left">
           <i class="fas fa-cogs"></i>
         </div>
         <div class="center">
-          Configuração
+          Ajustes
         </div>
         <div class="right">
           <ons-icon icon="fa-link"></ons-icon>
         </div>
       </ons-list-item>
 
-      <ons-list-item onclick="fn.pushPage({'id': 'minhasInformacoes.html', 'title': 'Minhas Informações'})">
+      <ons-list-item onclick="fn.pushPage({'id': 'minhaConfiguracao.html', 'title': 'Minha Configuração'})">
         <div class="left">
           <i class="fas fa-user"></i>
         </div>
         <div class="center">
-          Minhas Informações
+          Minha Configuração
         </div>
         <div class="right">
           <ons-icon icon="fa-link"></ons-icon>
@@ -165,6 +165,18 @@
         </div>
         <div class="center">
           Notificações
+        </div>
+        <div class="right">
+          <ons-icon icon="fa-link"></ons-icon>
+        </div>
+      </ons-list-item>
+
+      <ons-list-item onclick="fn.pushPage({'id': 'removerAnuncio.html', 'title': 'Remover Anúncios'})">
+        <div class="left">
+          <i class="fas fa-unlock"></i>
+        </div>
+        <div class="center">
+          Remover Anúncios
         </div>
         <div class="right">
           <ons-icon icon="fa-link"></ons-icon>
@@ -323,11 +335,11 @@
   </ons-page>
 </template>
 
-<template id="configuracao.html">
+<template id="ajustes.html">
   <ons-page>
         <ons-toolbar id="configuracao_">
             <div class="left">
-                <ons-back-button>Configuração</ons-back-button>
+                <ons-back-button>Ajustes</ons-back-button>
             </div>
             <div class="center"></div>
         </ons-toolbar>
@@ -402,7 +414,7 @@
           if (window.localStorage.getItem("versao_pro") === 'NAO') {
             admob.interstitial.show();
           }
-          app.registraAcesso('abs/configuracao.html');
+          app.registraAcesso('abs/ajustes.html');
           modo_noturno = JSON.parse(localStorage.getItem('modo-noturno'));
           $("#modo_noturno").attr("checked",modo_noturno);
           
@@ -426,16 +438,16 @@
   </ons-page>
 </template>
 
-<template id="minhasInformacoes.html">
+<template id="minhaConfiguracao.html">
   <ons-page>
     <ons-toolbar id="minhasInformacoes_">
         <div class="left">
-            <ons-back-button>Minhas Informações</ons-back-button>
+            <ons-back-button>Minha Configuração</ons-back-button>
         </div>
         <div class="center"></div>
     </ons-toolbar>
     <div style="text-align: center; margin-top: 30px;">
-      <p class="intro">Para sua segurança sempre mantenha seus dados atualizados.</p>
+      <span id="mensagemMinhasInformacoes"><p class="intro">Você está usando a versão FREE.</p></span>
       <br><br>
       <p><ons-input style="width: 90%;margin-bottom: 20px;" id="token" placeholder="Token:" modifier="underbar" type="text" float disabled></ons-input></p>
       <p><ons-input style="width: 90%;margin-bottom: 20px;" id="nome" placeholder="Seu Nome:" modifier="underbar" type="text" float></ons-input></p>
@@ -456,10 +468,11 @@
       <section style="margin: 16px">
         <ons-button modifier="large" class="button-margin" id="salvar_minhas_informacoes">Ok</ons-button>
       </section>
+      <br><br>
     </div>
     <script>
       ons.getScriptPage().onInit = function () {
-        var token_ = window.localStorage.getItem("uid") ? window.localStorage.getItem("uid") : '';
+        var token_ = window.localStorage.getItem("playerID") ? window.localStorage.getItem("playerID") : '';
         var nome_ = window.localStorage.getItem("nome") ? window.localStorage.getItem("nome") : '';
         var usuario_ = window.localStorage.getItem("usuario") ? window.localStorage.getItem("usuario") : '';
         var email_ = window.localStorage.getItem("email") ? window.localStorage.getItem("email") : '';
@@ -473,8 +486,16 @@
         $("#celular").val(celular_);
         $("#religiao").val(religiao_);
 
-        app.registraAcesso('abs/minhasInformacoes.html');
-        this.querySelector('#minhasInformacoes_ div.center').textContent = 'Minhas Informações';
+        if (window.localStorage.getItem("versao_pro") === 'NAO') {
+          $("#mensagemMinhasInformacoes").html('<p class="intro">Você está usando a versão FREE.</p>');
+        }
+        else{
+          var datahora_pro = window.localStorage.getItem("versao_pro").replace(/(\d*)-(\d*)-(\d*).*/, '$3-$2-$1');
+          $("#mensagemMinhasInformacoes").html('<p class="intro">Você está usando a versão PRO, válida até '+datahora_pro+'.</p>');
+        }
+
+        app.registraAcesso('abs/minhaConfiguracao.html');
+        this.querySelector('#minhasInformacoes_ div.center').textContent = 'Minha Configuração';
 
           $( "#salvar_minhas_informacoes" ).click(function() {
             var nome = $("#nome").val();
@@ -515,6 +536,89 @@
             }
             else{
               app.verificaExistenciaUsuario(usuario, religiao, nome, email, celular);
+            }
+          });
+      }
+    </script>
+    <style>
+        .button-margin {
+            margin: 6px 0;
+        }
+
+      .intro {
+        text-align: center;
+        padding: 0 20px;
+        margin-top: 40px;
+      }
+
+      ons-card {
+        cursor: pointer;
+        color: #333;
+      }
+
+      .card__title,
+      .card--material__title {
+        font-size: 20px;
+      }
+    </style>
+  </ons-page>
+</template>
+
+<template id="removerAnuncio.html">
+  <ons-page>
+    <ons-toolbar id="removerAnuncio_">
+        <div class="left">
+            <ons-back-button>Remover Anúncios</ons-back-button>
+        </div>
+        <div class="center"></div>
+    </ons-toolbar>
+    <div style="text-align: center; margin-top: 30px;">
+      <span id="mensagemremoverAnuncio"><p class="intro">Você está usando a versão FREE. Para remover o anúncio escolha um plano abaixo.</p></span>
+      <br><br>
+      <p>
+        <ons-select style="width: 90%;margin-bottom: 20px;" id="plano">
+          <option value="">Selecione um plano:</option>
+          <option value="1">Comprar por 1 mês - 1,19</option>
+          <option value="6">Comprar por 6 mês - 7,99</option>
+          <option value="12">Comprar por 12 meses - 11,99</option>
+        </ons-select>
+      </p>
+      <br>
+      <span><p class="intro">Você voltará para a versão FREE após a expiração do mês informado.</p></span>
+      <br>
+      <br>
+      <section style="margin: 16px">
+        <ons-button modifier="large" class="button-margin" id="botao_remover_anuncio">ATUALIZAR PARA A VERSÃO PRO</ons-button>
+      </section>
+      <br><br>
+    </div>
+    <script>
+      ons.getScriptPage().onInit = function () {
+        var token_ = window.localStorage.getItem("playerID") ? window.localStorage.getItem("playerID") : '';
+
+        if (window.localStorage.getItem("versao_pro") === 'NAO') {
+          //$("#mensagemremoverAnuncio").html('<p class="intro">Você está usando a versão FREE.</p>');
+        }
+        else{
+          var datahora_pro = window.localStorage.getItem("versao_pro").replace(/(\d*)-(\d*)-(\d*).*/, '$3-$2-$1');
+          $("#mensagemremoverAnuncio").html('<p class="intro">Você está usando a versão PRO, válida até '+datahora_pro+'.</p>');
+        }
+
+        app.registraAcesso('abs/removerAnuncio.html');
+        this.querySelector('#removerAnuncio_ div.center').textContent = 'Remover Anúncios';
+
+          $( "#botao_remover_anuncio" ).click(function() {
+            if (window.localStorage.getItem("versao_pro") === 'NAO') {
+              ons.notification.alert(
+                'Envie um e-mail para suporte.innovatesoft@gmail.com para realizar a compra.',
+                {title: 'Estamos em desenvolvimento'}
+              );
+            }
+            else{
+              ons.notification.alert(
+                'Você já está na versão PRO!',
+                {title: 'Erro'}
+              );
             }
           });
       }

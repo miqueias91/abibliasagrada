@@ -1,3 +1,10 @@
+var admobid = {}
+if (/(android)/i.test(navigator.userAgent)) {
+  admobid = {
+    banner: 'ca-app-pub-7091486462236476/5710446936',
+    interstitial: 'ca-app-pub-7091486462236476/7953466891',
+  }
+}
 window.fn = {};
 $("#existeProximoCapitulo").val(0)
 var id = '';
@@ -29,6 +36,8 @@ var lista_notificacao = JSON.parse(localStorage.getItem('lista-notificacoes') ||
 if (window.localStorage.getItem('userId')) {
   localStorage.removeItem('userId');
 }
+
+window.localStorage.setItem("versao_pro", 'NAO');
 
 window.fn.toggleMenu = function () {
   document.getElementById('appSplitter').left.toggle();
@@ -77,8 +86,6 @@ window.fn.hideDialog = function (id) {
 var app = {
   // Application Constructor
   initialize: function() {
-    //this.oneSignal();
-    //this.getIds();
 
     if (JSON.parse(ultimo_capitulo_lido)) {
       fn.pushPage({'id': 'textoLivro.html', 'title': ultimo_livro_lido_abr+'||'+ultimo_livro_lido+'||200||'+ultimo_capitulo_lido});
@@ -87,6 +94,20 @@ var app = {
       fn.pushPage({'id': 'textoLivro.html', 'title': 'Gn||Gênesis||50||1'});
     }
     document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    document.addEventListener('admob.banner.events.LOAD_FAIL', function(event) {
+      // alert(JSON.stringify(event))
+    });
+    document.addEventListener('admob.interstitial.events.LOAD_FAIL', function(event) {
+      // alert(JSON.stringify(event))
+    });
+    document.addEventListener('admob.interstitial.events.LOAD', function(event) {
+      // alert(JSON.stringify(event))
+      document.getElementsByClassName('showAd').disabled = false
+    });
+    document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
+      // alert(JSON.stringify(event))
+      admob.interstitial.prepare()
+    });
   },
   // deviceready Event Handler    
   // Bind any cordova events here. Common events are:
@@ -98,6 +119,7 @@ var app = {
   receivedEvent: function(id) {
     this.oneSignal();
     this.getIds();
+    this.buscaDadosUsuario();
     this.buscaNotificacoes();
   },
   oneSignal: function() {
@@ -125,10 +147,8 @@ var app = {
   },
   retirarMarcadorVersiculo: function(livro, num_capitulo, num_versiculo, array) {
     for(var i=0; i<array.length; i++) {
-      if (array[i]['livro']) {
-        if((array[i]['livro'].toLowerCase() === livro.toLowerCase()) && (array[i]['num_capitulo'] === num_capitulo) && (array[i]['num_versiculo'] === num_versiculo)) {
-          array.splice(i, 1);
-        }
+      if((array[i]['livro'].toLowerCase() === livro.toLowerCase()) && (array[i]['num_capitulo'] === num_capitulo) && (array[i]['num_versiculo'] === num_versiculo)) {
+        array.splice(i, 1);
       }
     }
     var lista_versiculos = JSON.parse(localStorage.getItem('lista-versiculos') || '[]');
@@ -139,10 +159,8 @@ var app = {
     array = JSON.parse(localStorage.getItem('lista-versiculos'));
     if (array) {
       for(var k=0; k < array.length; k++) {
-        if (array[k]['livro']) {
-          if((array[k]['livro'].toLowerCase() === livro.toLowerCase()) && (array[k]['num_capitulo'] == num_capitulo) && (array[k]['num_versiculo'] == num_versiculo)) {
-            return array[k]['cor'];
-          }
+        if((array[k]['livro'].toLowerCase() === livro.toLowerCase()) && (array[k]['num_capitulo'] == num_capitulo) && (array[k]['num_versiculo'] == num_versiculo)) {
+          return array[k]['cor'];
         }
       }   
     }
@@ -341,6 +359,42 @@ var app = {
               lista_versiculos = JSON.parse(localStorage.getItem('lista-versiculos'));
               app.retirarMarcadorVersiculo(livro, num_capitulo, num_versiculo, lista_versiculos);
             }      
+          }      
+        });
+
+        $( ".cores" ).click(function() {
+          marcado = $(this).attr('marcado');
+          var cor = $(this).attr('id');
+          var livro = $('#'+id).attr('livro');
+          var num_capitulo = $('#'+id).attr('num_capitulo');
+          var num_versiculo = $('#'+id).attr('num_versiculo');
+    
+          if (marcado==0) {
+            $('#'+id).attr('marcado',1);
+            $('#'+id).attr('txt_marcado',0);
+            $(".botao_controle").css("display","none");
+            $(".cores").css("display","");
+            $('#'+id).css("background","#f5f5f5");
+            lista_versiculos = JSON.parse(localStorage.getItem('lista-versiculos'));
+            app.retirarMarcadorVersiculo(livro, num_capitulo, num_versiculo, lista_versiculos);
+          }
+          else{
+            $(".copiar").css("display","none");
+            $(".compartilha").css("display","none");
+            id = $("[marcado=1]").attr('id');
+            $("#"+id).attr('marcado',0);
+            $('#'+id).attr('txt_marcado',1);
+            $(".cores").css("display","none");
+            $(".botao_controle").css("display","");
+            $("#"+id).css("background",cor);
+            var livro = $('#'+id).attr('livro');
+            var num_capitulo = $('#'+id).attr('num_capitulo');
+            var num_versiculo = $('#'+id).attr('num_versiculo');
+
+            var lista_versiculos = JSON.parse(localStorage.getItem('lista-versiculos') || '[]');
+            lista_versiculos.push({cor: cor, livro: livro, num_capitulo: num_capitulo, num_versiculo: num_versiculo});
+            localStorage.setItem("lista-versiculos", JSON.stringify(lista_versiculos));
+            usar_cores = 0;
           }      
         });
       }
@@ -821,6 +875,110 @@ var app = {
           firebase.database().ref('notificacoes').child(uid).child('abs').remove();
         }
       });
+    }
+  },
+  verificaExistenciaUsuario: function(usuario, religiao, nome, email, celular) {
+    var uid = window.localStorage.getItem('uid');
+    if (usuario != "") {
+      fn.showDialog('modal-aguarde');
+      $.ajax({
+        url: "https://www.innovatesoft.com.br/webservice/app/verificaExistenciaUsuario.php?usuario="+usuario,
+        dataType: 'json',
+        type: 'POST',
+        data: {
+          'nome': nome,
+          'email': email,
+          'religiao': religiao,
+          'celular': celular,
+          'uid': uid,
+        },
+        error: function(e) {
+          var timeoutID = 0;
+          clearTimeout(timeoutID);
+          timeoutID = setTimeout(function() { fn.hideDialog('modal-aguarde') }, 100);
+          ons.notification.alert(
+            'Verifique sua conexão com a internet!',
+            {title: 'Erro'}
+          );
+        },
+        success: function(a) {
+          var timeoutID = 0;
+          clearTimeout(timeoutID);
+          timeoutID = setTimeout(function() { fn.hideDialog('modal-aguarde') }, 100);
+          if (a == true) {
+            ons.notification.alert(
+              'Escolha outro usuário!',
+              {title: 'Erro'}
+            );
+          }
+          else{
+            window.localStorage.setItem("usuario", usuario);
+            window.localStorage.setItem("nome", nome);
+            window.localStorage.setItem("email", email);
+            window.localStorage.setItem("religiao", religiao);
+            window.localStorage.setItem("celular", celular);
+            ons.notification.alert(
+              'Dados atualizados com sucesso!',
+              {title: 'Sucesso'}
+            );
+          }
+        },
+      });
+    }
+  },
+  buscaDadosUsuario: function() {
+    var uid = window.localStorage.getItem('uid');
+    if (uid) {
+      $.ajax({
+        url: "https://www.innovatesoft.com.br/webservice/app/buscaDadosUsuario.php",
+        dataType: 'json',
+        type: 'POST',
+        async: true,
+        data: {
+          'uid': uid,
+        },
+        success: function(a) {
+          if (a) {
+            window.localStorage.setItem("nome", a['nome']);
+            window.localStorage.setItem("usuario", a['usuario']);
+            window.localStorage.setItem("email", a['email']);
+            window.localStorage.setItem("celular", a['celular']);
+            window.localStorage.setItem("religiao", a['religiao']);
+            if (a['final_versao_pro'] == null) {
+              a['final_versao_pro'] = 'NAO';
+            }
+            window.localStorage.setItem("versao_pro", a['final_versao_pro']);
+            app.admob();
+          }
+        },
+      });
+    }
+  },
+  admob: function(){
+    window.plugins.insomnia.keepAwake();
+    admob.banner.config({ 
+      id: admobid.banner, 
+      isTesting: false, 
+      autoShow: true, 
+    })
+
+    if (window.localStorage.getItem("versao_pro") === 'NAO') {
+      admob.banner.prepare()
+    }
+    
+    admob.interstitial.config({
+      id: admobid.interstitial,
+      isTesting: false,
+      autoShow: false,
+    })
+
+    if (window.localStorage.getItem("versao_pro") === 'NAO') {
+      admob.interstitial.prepare()
+    }
+
+    document.getElementsByClassName('showAd').disabled = true
+    document.getElementsByClassName('showAd').onclick = function() {
+      admob.interstitial.show()
     }
   }
 };
