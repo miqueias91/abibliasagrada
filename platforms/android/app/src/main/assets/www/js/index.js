@@ -856,8 +856,10 @@ var app = {
   },
   buscaNotificacoes: function(){
     var uid = window.localStorage.getItem('uid');
-    if (uid) {
-      firebase.database().ref('notificacoes').child(uid).child('abs').on('value', (snapshot) => {
+    var playerID = window.localStorage.getItem('playerID');
+
+    if (playerID) {
+      firebase.database().ref('notificacoes').child(playerID).child('abs').on('value', (snapshot) => {
         //localStorage.removeItem("lista-notificacoes");
         var notificacoes = snapshot.val();
         if (notificacoes) {
@@ -872,7 +874,7 @@ var app = {
             lista_notificacao.push({id: hash, titulo: titulo, mensagem: mensagem, lido: lido, data_notificacao: data_notificacao, link: link});
             localStorage.setItem("lista-notificacoes", JSON.stringify(lista_notificacao));
           });
-          firebase.database().ref('notificacoes').child(uid).child('abs').remove();
+          firebase.database().ref('notificacoes').child(playerID).child('abs').remove();
         }
       });
     }

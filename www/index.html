@@ -46,7 +46,7 @@
       </div>
     </ons-toolbar>
     <ons-tabbar swipeable id="appTabbar" position="bottom">
-        <ons-tab label="Versão 1.0.5" page="home.html" active></ons-tab>
+        <ons-tab label="Versão 1.0.6" page="home.html" active></ons-tab>
     </ons-tabbar>
 
     <script>
@@ -609,10 +609,7 @@
 
           $( "#botao_remover_anuncio" ).click(function() {
             if (window.localStorage.getItem("versao_pro") === 'NAO') {
-              ons.notification.alert(
-                'Envie um e-mail para suporte.innovatesoft@gmail.com para realizar a compra.',
-                {title: 'Estamos em desenvolvimento'}
-              );
+              window.open("https://www.innovatesoft.com.br/assinatura.php?token="+token_+"&plano="+$("#plano").val());
             }
             else{
               ons.notification.alert(
