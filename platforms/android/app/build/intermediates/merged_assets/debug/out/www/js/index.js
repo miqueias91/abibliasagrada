@@ -109,17 +109,16 @@ var app = {
       admob.interstitial.prepare()
     });
   },
-  // deviceready Event Handler    
-  // Bind any cordova events here. Common events are:
-  // 'pause', 'resume', etc.
   onDeviceReady: function() {    
     this.receivedEvent('deviceready');  
   },
   // Update DOM on a Received Event
   receivedEvent: function(id) {
+    this.firebase();
     this.oneSignal();
     this.getIds();
     this.buscaDadosUsuario();
+    this.admob();
     this.buscaNotificacoes();
   },
   oneSignal: function() {
@@ -858,8 +857,8 @@ var app = {
     var uid = window.localStorage.getItem('uid');
     var playerID = window.localStorage.getItem('playerID');
 
-    if (playerID) {
-      firebase.database().ref('notificacoes').child(playerID).child('abs').on('value', (snapshot) => {
+    if (uid) {
+      firebase.database().ref('notificacoes').child(uid).on('value', (snapshot) => {
         //localStorage.removeItem("lista-notificacoes");
         var notificacoes = snapshot.val();
         if (notificacoes) {
@@ -874,7 +873,7 @@ var app = {
             lista_notificacao.push({id: hash, titulo: titulo, mensagem: mensagem, lido: lido, data_notificacao: data_notificacao, link: link});
             localStorage.setItem("lista-notificacoes", JSON.stringify(lista_notificacao));
           });
-          firebase.database().ref('notificacoes').child(playerID).child('abs').remove();
+          firebase.database().ref('notificacoes').child(uid).remove();
         }
       });
     }
@@ -955,7 +954,6 @@ var app = {
               a['final_versao_pro'] = 'NAO';
             }
             window.localStorage.setItem("versao_pro", a['final_versao_pro']);
-            app.admob();
           }
         },
       });
@@ -987,6 +985,27 @@ var app = {
     document.getElementsByClassName('showAd').onclick = function() {
       admob.interstitial.show()
     }
+  },
+  firebase: function(){
+    var firebaseConfig = {
+      apiKey: "AIzaSyA1Wk3Grve6z5QjPx_gcOwcaAjZU3zjo1U",
+      authDomain: "a-biblia-sagrada.firebaseapp.com",
+      databaseURL: "https://a-biblia-sagrada.firebaseio.com",
+      projectId: "a-biblia-sagrada",
+      storageBucket: "a-biblia-sagrada.appspot.com",
+      messagingSenderId: "210414208734",
+      appId: "1:210414208734:web:7bc4a967a161d30454e44f",
+      measurementId: "G-QTMZ8HFDJF"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    firebase.auth().signInAnonymously().catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage)
+    });
   }
 };
 

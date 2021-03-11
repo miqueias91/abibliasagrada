@@ -146,8 +146,10 @@ var app = {
   },
   retirarMarcadorVersiculo: function(livro, num_capitulo, num_versiculo, array) {
     for(var i=0; i<array.length; i++) {
-      if((array[i]['livro'].toLowerCase() === livro.toLowerCase()) && (array[i]['num_capitulo'] === num_capitulo) && (array[i]['num_versiculo'] === num_versiculo)) {
-        array.splice(i, 1);
+      if (array[i]['livro']) {
+        if((array[i]['livro'].toLowerCase() === livro.toLowerCase()) && (array[i]['num_capitulo'] === num_capitulo) && (array[i]['num_versiculo'] === num_versiculo)) {
+          array.splice(i, 1);
+        }
       }
     }
     var lista_versiculos = JSON.parse(localStorage.getItem('lista-versiculos') || '[]');
@@ -158,8 +160,10 @@ var app = {
     array = JSON.parse(localStorage.getItem('lista-versiculos'));
     if (array) {
       for(var k=0; k < array.length; k++) {
-        if((array[k]['livro'].toLowerCase() === livro.toLowerCase()) && (array[k]['num_capitulo'] == num_capitulo) && (array[k]['num_versiculo'] == num_versiculo)) {
-          return array[k]['cor'];
+        if (array[k]['livro']) {
+          if((array[k]['livro'].toLowerCase() == livro.toLowerCase()) && (array[k]['num_capitulo'] == num_capitulo) && (array[k]['num_versiculo'] == num_versiculo)) {
+            return array[k]['cor'];
+          }
         }
       }   
     }
@@ -188,7 +192,7 @@ var app = {
       return false;   
     }
     return false;
-  },  
+  },   
   buscaTexto: function(versaoId,livro,capitulo, nome) {
     inicioLeitura = 0;
     localStorage.setItem("ultimo_livro_lido", nome);

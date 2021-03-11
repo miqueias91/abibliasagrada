@@ -64,12 +64,12 @@
         "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-port-ldpi/screen.png"
     },
     {
-        "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/release/drawable-land-mdpi_screen.png.flat",
-        "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-land-mdpi/screen.png"
-    },
-    {
         "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/release/drawable-mdpi_ic_stat_onesignal_default.png.flat",
         "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-mdpi/ic_stat_onesignal_default.png"
+    },
+    {
+        "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/release/drawable-land-mdpi_screen.png.flat",
+        "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/drawable-land-mdpi/screen.png"
     },
     {
         "merged": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/res/merged/release/drawable-xxhdpi_ic_stat_onesignal_default.png.flat",

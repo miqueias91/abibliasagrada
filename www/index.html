@@ -45,7 +45,7 @@
       </div>
     </ons-toolbar>
     <ons-tabbar swipeable id="appTabbar" position="bottom">
-        <ons-tab label="Versão 1.0.7" page="home.html" active></ons-tab>
+        <ons-tab label="Versão 1.0.9" page="home.html" active></ons-tab>
     </ons-tabbar>
 
     <script>
@@ -298,7 +298,7 @@
       ons.getScriptPage().onInit = function () {
         app.registraAcesso('abs/versiculosMarcados.html');
         if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
         $("#textoVersiculo").html('');
         this.querySelector('#versiculosMarcados_ div.center').textContent = 'Versículos Marcados';
@@ -411,7 +411,7 @@
           };
         ons.getScriptPage().onInit = function () {
           if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
           app.registraAcesso('abs/ajustes.html');
           modo_noturno = JSON.parse(localStorage.getItem('modo-noturno'));
@@ -706,7 +706,7 @@
     <script>
       ons.getScriptPage().onInit = function () {
         if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
         app.registraAcesso('abs/palavraDia.html');
         $("#textoVersiculo").html('');
@@ -755,7 +755,7 @@
     <script>
         ons.getScriptPage().onInit = function () {
           if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
           app.registraAcesso('abs/capitulosLidos.html');
           $("#textoCapitulosLidos").html('');
@@ -1113,7 +1113,7 @@
     <script>
         ons.getScriptPage().onInit = function () {
           if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
           app.registraAcesso('abs/harpa.html');
           fn.showDialog('modal-aguarde');
@@ -1586,7 +1586,7 @@
         <script>
           ons.getScriptPage().onInit = function () {
             if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
             var dados = this.data.title.split('||'); 
             this.querySelector('#conteudoLivro_ div.center').textContent = dados[1];
@@ -1917,7 +1917,7 @@
         <script>
         ons.getScriptPage().onInit = function () {
           if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
           var dados = this.data.title.split('||'); 
           app.registraAcesso('abs/conteudoHarpa.html?livro='+dados[0]);
@@ -1949,7 +1949,7 @@
     <script>
       ons.getScriptPage().onInit = function () {
         if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
         app.registraAcesso('abs/notificacoes.html');
         this.querySelector('#notificacoes_ div.center').textContent = 'Notificações';
@@ -2245,7 +2245,7 @@
     <script>
       ons.getScriptPage().onInit = function () {
         if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
         app.registraAcesso('abs/versoes.html');
         this.querySelector('#versoes_ div.center').textContent = 'Versões';
@@ -2608,7 +2608,7 @@
     <script>
         ons.getScriptPage().onInit = function () {
           if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
           app.registraAcesso('abs/cantor.html');
           fn.showDialog('modal-aguarde');
@@ -2674,7 +2674,7 @@
         <script>
         ons.getScriptPage().onInit = function () {
           if (window.localStorage.getItem("versao_pro") === 'NAO') {
-            admob.interstitial.show();
+            //admob.interstitial.show();
           }
           var dados = this.data.title.split('||'); 
           app.registraAcesso('abs/conteudoCantor.html?livro='+dados[0]);
