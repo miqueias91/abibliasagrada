@@ -3,8 +3,8 @@
     package="br.com.innovatesoft.abibliasagrada"
     android:hardwareAccelerated="true"
     android:targetSandboxVersion="2"
-    android:versionCode="10007"
-    android:versionName="1.0.7" >
+    android:versionCode="10009"
+    android:versionName="1.0.9" >
 
     <uses-sdk
         android:minSdkVersion="19"

@@ -2,8 +2,8 @@
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="br.com.innovatesoft.abibliasagrada"
 4    android:hardwareAccelerated="true"
-5    android:versionCode="10007"
-6    android:versionName="1.0.7" >
+5    android:versionCode="10009"
+6    android:versionName="1.0.9" >
 7
 8    <uses-sdk
 8-->/var/www/app/abibliasagrada/platforms/android/app/src/main/AndroidManifest.xml:45:5-47
