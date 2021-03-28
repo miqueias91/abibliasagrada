@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/var/www/app/abibliasagrada/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/var/www/app/android/abibliasagrada/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
                     "source": "/home/miqueias/.gradle/caches/transforms-2/files-2.1/632486dd5fe09fc419b241de4620e909/play-services-basement-11.6.2/res/values/values.xml",
@@ -90,6 +90,23 @@
                         "startOffsets": "19368",
                         "endColumns": "81",
                         "endOffsets": "19445"
+                    }
+                },
+                {
+                    "source": "/var/www/app/android/abibliasagrada/platforms/android/app/build/generated/res/google-services/debug/values/values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,310,392,496,605,725",
+                        "endColumns": "143,110,81,103,108,119,99",
+                        "endOffsets": "194,305,387,491,600,720,820"
+                    },
+                    "to": {
+                        "startLines": "269,271,272,273,274,275,276",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "19224,19450,19561,19643,19747,19856,19976",
+                        "endColumns": "143,110,81,103,108,119,99",
+                        "endOffsets": "19363,19556,19638,19742,19851,19971,20071"
                     }
                 },
                 {
@@ -184,7 +201,7 @@
                     }
                 },
                 {
-                    "source": "/var/www/app/abibliasagrada/platforms/android/app/src/main/res/values/strings.xml",
+                    "source": "/var/www/app/android/abibliasagrada/platforms/android/app/src/main/res/values/strings.xml",
                     "from": {
                         "startLines": "4,2,3",
                         "startColumns": "4,4,4",
@@ -198,23 +215,6 @@
                         "startOffsets": "16889,16953,20076",
                         "endColumns": "63,53,58",
                         "endOffsets": "16948,17002,20130"
-                    }
-                },
-                {
-                    "source": "/var/www/app/abibliasagrada/platforms/android/app/build/generated/res/google-services/debug/values/values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,310,392,496,605,725",
-                        "endColumns": "143,110,81,103,108,119,99",
-                        "endOffsets": "194,305,387,491,600,720,820"
-                    },
-                    "to": {
-                        "startLines": "269,271,272,273,274,275,276",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "19224,19450,19561,19643,19747,19856,19976",
-                        "endColumns": "143,110,81,103,108,119,99",
-                        "endOffsets": "19363,19556,19638,19742,19851,19971,20071"
                     }
                 }
             ]

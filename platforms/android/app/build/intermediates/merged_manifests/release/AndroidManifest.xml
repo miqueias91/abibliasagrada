@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.innovatesoft.abibliasagrada"
     android:hardwareAccelerated="true"
-    android:versionCode="10007"
-    android:versionName="1.0.7" >
+    android:versionCode="10010"
+    android:versionName="1.0.10" >
 
     <uses-sdk
         android:minSdkVersion="19"
