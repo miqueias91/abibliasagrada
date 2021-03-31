@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.innovatesoft.abibliasagrada"
     android:hardwareAccelerated="true"
-    android:versionCode="10010"
-    android:versionName="1.0.10" >
+    android:versionCode="10011"
+    android:versionName="1.0.11" >
 
     <uses-sdk
         android:minSdkVersion="19"
-        android:targetSdkVersion="29" />
+        android:targetSdkVersion="30" />
 
     <supports-screens
         android:anyDensity="true"
