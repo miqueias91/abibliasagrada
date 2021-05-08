@@ -518,6 +518,7 @@ var app = {
       success : function(data){
         $(selector).each(function(){
           var myBook = null;
+          var refrao = "";
           var obj = {
             id : id,
             text : ""
@@ -542,13 +543,23 @@ var app = {
             } 
             for (var i = 0; i < myBook['hinario'].length; i++) {
               texto = myBook['hinario'][i];
-
-              obj.text += 
-              '<ons-list-item style="background:'+background+';color:#'+color+'">'+
-                '<p style="font-size: '+fonte_versiculo+'px;text-align:justify;line-height: 30px;background:'+background+';color:#'+color+'">'+
-                  ''+texto+ 
-                '</p>'+
-              '</ons-list-item>';
+              if(texto.substr(0, 1) == '*'){
+                refrao = texto.replace("*","");
+                obj.text += 
+                '<ons-list-item style="padding:0 16px;background:'+background+';color:#'+color+';font-weight:bold">'+
+                  '<p style="line-height:31px;margin:0;font-weight:bold;font-size:20px;text-align:left;background:'+background+';color:#'+color+'">'+
+                    '<i>'+refrao+ 
+                  '</i></p>'+
+                '</ons-list-item>';
+              }
+              if(texto.substr(0, 1) != '*'){
+                obj.text += 
+                '<ons-list-item style="padding:0 16px;background:'+background+';color:#'+color+'">'+
+                  '<p style="line-height:31px;margin:0;font-size:20px;text-align:left;background:'+background+';color:#'+color+'">'+
+                    ''+texto+ 
+                  '</p>'+
+                '</ons-list-item>';
+              }
             }
           }
           $("#conteudoHarpa").html(obj.text);
