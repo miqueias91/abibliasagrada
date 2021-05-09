@@ -590,20 +590,52 @@ var app = {
   },
   pesquisaHarpa: function(term){
     if (term != '') {
-      term = term.toLowerCase();
       text = '';
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           $("#resultado_pesquisa_harpa").html('');
           var data = JSON.parse(this.responseText);
+
           data.forEach(function (hinos) {
-            var achou = false;
-            hinos['hinario'].forEach(function (hino) {
-              if (!achou) {
-                str = hino.toLowerCase();
-                if(str.match(term)){
-                  achou = true;
+            var achou = 0;
+
+            //PESQUISA PELO NUMERO
+            var str = hinos['id'];
+            if (achou == 0) {
+              if(parseInt(str) === parseInt(term)){
+                achou = 1;
+                text +=
+                '<ons-list-item class="showAd" onclick="fn.pushPage({\'id\': \'conteudoHarpa.html\', \'title\': \''+hinos['id']+'||'+hinos['titulo']+'\'})">'+             
+                '  <div class="center" style="font-size: 15px;display:block;"><span>'+hinos['id']+' - '+hinos['titulo']+'</span>'+
+                '   <div><i style="font-size: 11px;">'+hinos['id']+" - "+hinos['titulo']+'</i></div>'+
+                '  </div>'+
+                '</ons-list-item>';
+              }
+            }
+
+            //PESQUISA PELO TITULO SE NAO ACHAR PELO NUMERO
+            if (achou == 0) {
+              var str = hinos['titulo'].toLowerCase();
+              term = term.toLowerCase();
+              if(str.match(term) && achou == 0){
+                achou = 1;
+                text +=
+                '<ons-list-item class="showAd" onclick="fn.pushPage({\'id\': \'conteudoHarpa.html\', \'title\': \''+hinos['id']+'||'+hinos['titulo']+'\'})">'+             
+                '  <div class="center" style="font-size: 15px;display:block;"><span>'+hinos['id']+' - '+hinos['titulo']+'</span>'+
+                '   <div><i style="font-size: 11px;">'+hinos['id']+" - "+hinos['titulo']+'</i></div>'+
+                '  </div>'+
+                '</ons-list-item>';
+              }
+            }
+
+            //PESQUISA DENTRO DO HINARIO SE NAO ACHAR NO TITULO
+            if (achou == 0) {
+              hinos['hinario'].forEach(function (hino) {
+                var str = hino.toLowerCase();
+                term = term.toLowerCase();
+                if(str.match(term) && achou == 0){
+                  achou = 1;
                   text +=
                   '<ons-list-item class="showAd" onclick="fn.pushPage({\'id\': \'conteudoHarpa.html\', \'title\': \''+hinos['id']+'||'+hinos['titulo']+'\'})">'+             
                   '  <div class="center" style="font-size: 15px;display:block;"><span>'+hinos['id']+' - '+hinos['titulo']+'</span>'+
@@ -611,9 +643,11 @@ var app = {
                   '  </div>'+
                   '</ons-list-item>';
                 }
-              }
-            });
+              });
+            }
           });
+
+
           if (text === '') {
             text = '<p style="text-align: center; margin: 0 0 10px 0;">Nenhum resultado encontrado</p>';
           }
@@ -782,16 +816,27 @@ var app = {
               if(data[i].id == obj.id){
                   myBook = data[i];
               }
-            } 
+            }
+
             for (var i = 0; i < myBook['hinario'].length; i++) {
               texto = myBook['hinario'][i];
-
-              obj.text += 
-              '<ons-list-item style="background:'+background+';color:#'+color+'">'+
-                '<p style="font-size: '+fonte_versiculo+'px;text-align:justify;line-height: 30px;background:'+background+';color:#'+color+'">'+
-                  ''+texto+ 
-                '</p>'+
-              '</ons-list-item>';
+              if(texto.substr(0, 1) == '*'){
+                refrao = texto.replace("*","");
+                obj.text += 
+                '<ons-list-item style="padding:0 16px;background:'+background+';color:#'+color+';font-weight:bold">'+
+                  '<p style="line-height:31px;margin:0;font-weight:bold;font-size:20px;text-align:left;background:'+background+';color:#'+color+'">'+
+                    '<i>'+refrao+ 
+                  '</i></p>'+
+                '</ons-list-item>';
+              }
+              if(texto.substr(0, 1) != '*'){
+                obj.text += 
+                '<ons-list-item style="padding:0 16px;background:'+background+';color:#'+color+'">'+
+                  '<p style="line-height:31px;margin:0;font-size:20px;text-align:left;background:'+background+';color:#'+color+'">'+
+                    ''+texto+ 
+                  '</p>'+
+                '</ons-list-item>';
+              }
             }
           }
           $("#conteudoCantor").html(obj.text);
@@ -822,20 +867,50 @@ var app = {
   },
   pesquisaCantor: function(term){
     if (term != '') {
-      term = term.toLowerCase();
       text = '';
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
           $("#resultado_pesquisa_cantor").html('');
           var data = JSON.parse(this.responseText);
+          var achou = 0;
           data.forEach(function (hinos) {
-            var achou = false;
-            hinos['hinario'].forEach(function (hino) {
-              if (!achou) {
-                str = hino.toLowerCase();
-                if(str.match(term)){
-                  achou = true;
+            //PESQUISA PELO NUMERO
+            var str = hinos['id'];
+            if (achou == 0) {
+              if(parseInt(str) === parseInt(term)){
+                achou = 1;
+                text +=
+                '<ons-list-item class="showAd" onclick="fn.pushPage({\'id\': \'conteudoCantor.html\', \'title\': \''+hinos['id']+'||'+hinos['titulo']+'\'})">'+             
+                '  <div class="center" style="font-size: 15px;display:block;"><span>'+hinos['id']+' - '+hinos['titulo']+'</span>'+
+                '   <div><i style="font-size: 11px;">'+hinos['id']+" - "+hinos['titulo']+'</i></div>'+
+                '  </div>'+
+                '</ons-list-item>';
+              }
+            }
+
+            //PESQUISA PELO TITULO SE NAO ACHAR PELO NUMERO
+            if (achou == 0) {
+              var str = hinos['titulo'].toLowerCase();
+              term = term.toLowerCase();
+              if(str.match(term) && achou == 0){
+                achou = 1;
+                text +=
+                '<ons-list-item class="showAd" onclick="fn.pushPage({\'id\': \'conteudoCantor.html\', \'title\': \''+hinos['id']+'||'+hinos['titulo']+'\'})">'+             
+                '  <div class="center" style="font-size: 15px;display:block;"><span>'+hinos['id']+' - '+hinos['titulo']+'</span>'+
+                '   <div><i style="font-size: 11px;">'+hinos['id']+" - "+hinos['titulo']+'</i></div>'+
+                '  </div>'+
+                '</ons-list-item>';
+              }
+            }
+
+            //PESQUISA DENTRO DO HINARIO SE NAO ACHAR NO TITULO
+            if (achou == 0) {
+              hinos['hinario'].forEach(function (hino) {
+                var str = hino.toLowerCase();
+                term = term.toLowerCase();
+                if(str.match(term) && achou == 0){
+                  achou = 1;
                   text +=
                   '<ons-list-item class="showAd" onclick="fn.pushPage({\'id\': \'conteudoCantor.html\', \'title\': \''+hinos['id']+'||'+hinos['titulo']+'\'})">'+             
                   '  <div class="center" style="font-size: 15px;display:block;"><span>'+hinos['id']+' - '+hinos['titulo']+'</span>'+
@@ -843,9 +918,11 @@ var app = {
                   '  </div>'+
                   '</ons-list-item>';
                 }
-              }
-            });
+              });
+            }
+            achou = 0;
           });
+
           if (text === '') {
             text = '<p style="text-align: center; margin: 0 0 10px 0;">Nenhum resultado encontrado</p>';
           }
