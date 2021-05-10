@@ -76,22 +76,11 @@
         </div>
       </ons-list-item>
 
-      <ons-list-item onclick="fn.pushPage({'id': 'harpa.html', 'title': 'Harpa Cristã'})">
+      <ons-list-item onclick="fn.pushPage({'id': 'hinario.html', 'title': 'Hinário'})">
         <div class="left">
           <i class="fas fa-music"></i>
         </div>
-          Harpa Cristã
-        </div>
-        <div class="right">
-          <ons-icon icon="fa-link"></ons-icon>
-        </div>
-      </ons-list-item>
-
-      <ons-list-item onclick="fn.pushPage({'id': 'cantor.html', 'title': 'Cantor Cristão'})">
-        <div class="left">
-          <i class="fas fa-music"></i>
-        </div>
-          Cantor Cristão
+          Hinários
         </div>
         <div class="right">
           <ons-icon icon="fa-link"></ons-icon>
@@ -869,6 +858,53 @@
              
             }   
           }
+        }
+    </script>
+    <style>
+        .button-margin {
+            margin: 6px 0;
+        }
+
+      .intro {
+        text-align: center;
+        padding: 0 20px;
+        margin-top: 40px;
+      }
+
+      ons-card {
+        cursor: pointer;
+        color: #333;
+      }
+
+      .card__title,
+      .card--material__title {
+        font-size: 20px;
+      }
+    </style>
+  </ons-page>
+</template>
+
+<template id="hinario.html">
+  <ons-page>
+    <ons-toolbar id="hinario_">
+      <div class="left">
+          <ons-back-button>Hinário</ons-back-button>
+      </div>
+      <div class="right"></div>
+    </ons-toolbar>
+
+      <ons-card style="background-color: #333;" onclick="fn.pushPage({'id': 'harpa.html', 'title': 'Harpa Cristã'})">
+          <div class="title" style="color: #F5F5F5;">Harpa Cristã</div>
+      </ons-card>
+
+      <ons-card style="background-color: #333;" onclick="fn.pushPage({'id': 'cantor.html', 'title': 'Cantor Cristão'})">
+          <div class="title" style="color: #F5F5F5;">Cantor Cristão</div>
+      </ons-card>
+
+    <script>
+        ons.getScriptPage().onInit = function () {
+          app.registraAcesso('abs/hinario.html');
+          this.querySelector('#hinario_ div.center').textContent = 'Hinários';
         }
     </script>
     <style>
