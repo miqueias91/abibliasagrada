@@ -39,6 +39,10 @@ if (window.localStorage.getItem('userId')) {
 
 window.localStorage.setItem("versao_pro", 'NAO');
 
+if (!window.localStorage.getItem('lista-favorito-hinario')) {
+  localStorage.setItem("lista-favorito-hinario", '[]'); 
+}
+
 window.fn.toggleMenu = function () {
   document.getElementById('appSplitter').left.toggle();
 };
@@ -192,7 +196,69 @@ var app = {
       return false;   
     }
     return false;
-  },  
+  },
+  buscaFavorioHinario: function(hinario, id_hinario) {
+    var array = JSON.parse(localStorage.getItem('lista-favorito-hinario'));
+    if (array) {
+      for(var k=0; k < array.length; k++) {
+        if (array[k]['hinario']) {
+          if((array[k]['hinario'].toLowerCase() == hinario.toLowerCase()) && (array[k]['id_hinario'] == id_hinario)) {
+            return 'yellow';
+          }
+        }
+      }   
+    }
+    return '#f5f5f5'
+  },
+  incluirFavorioHinario: function(hinario, id_hinario, titulo) {
+    var favorito_hinario = JSON.parse(localStorage.getItem('lista-favorito-hinario') || '[]');
+    favorito_hinario.push({hinario: hinario, id_hinario: id_hinario, titulo: titulo});
+    localStorage.setItem("lista-favorito-hinario", JSON.stringify(favorito_hinario));
+    return 'yellow';
+  },
+  retirarFavorioHinario: function(hinario, id_hinario) {
+    var array = JSON.parse(localStorage.getItem('lista-favorito-hinario') || '[]');
+    for(var i=0; i<array.length; i++) {
+      if (array[i]['hinario']) {
+        if((array[i]['hinario'].toLowerCase() === hinario.toLowerCase()) && (array[i]['id_hinario'] === id_hinario)) {
+          array.splice(i, 1);
+        }
+      }
+    }
+    var favorito_hinario = JSON.parse(localStorage.getItem('lista-favorito-hinario') || '[]');
+    localStorage.removeItem(favorito_hinario);
+    localStorage.setItem("lista-favorito-hinario", JSON.stringify(array));
+    this.listaFavorioHinario();
+  },
+  listaFavorioHinario: function() {
+    var link = '';
+    var descricao = '';
+    var html_favoritos = '<p style="text-align: center">Nenhum favorito encontrado...</p>'
+    var array = JSON.parse(localStorage.getItem('lista-favorito-hinario'));
+    if (array) {
+      html_favoritos = "";
+      for(var k=0; k < array.length; k++) {
+        if (array[k]['hinario']) {
+          if (array[k]['hinario'] === 'harpa') {
+            link = 'conteudoHarpa.html';
+          }
+          else{
+            link = 'conteudoCantor.html';
+          }
+          descricao = array[k]['id_hinario']+'||'+array[k]['titulo'];
+
+          html_favoritos += '<ons-list-item class="showAd list-item list-item--material" onclick="fn.pushPage({\'id\': \''+link+'\', \'title\': \''+descricao+'\'})" modifier="material">'+
+            '<div class="center list-item__center list-item--material__center" style="font-size: 15px;">'+array[k]['id_hinario']+' - '+array[k]['titulo']+'</div>'+
+            '<div class="left list-item__left list-item--material__left"></div>'+
+            '<div class="right list-item__right list-item--material__right">'+
+               '<ons-icon icon="fa-angle-right" class="ons-icon fa-angle-right fa" modifier="material"></ons-icon>'+
+            '</div>'+
+         '</ons-list-item>';
+        }
+      }   
+    }
+    $("#listaFavoritos").html(html_favoritos);
+  },
   buscaTexto: function(versaoId,livro,capitulo, nome) {
     inicioLeitura = 0;
     localStorage.setItem("ultimo_livro_lido", nome);
