@@ -214,6 +214,7 @@ var app = {
     var favorito_hinario = JSON.parse(localStorage.getItem('lista-favorito-hinario') || '[]');
     favorito_hinario.push({hinario: hinario, id_hinario: id_hinario, titulo: titulo});
     localStorage.setItem("lista-favorito-hinario", JSON.stringify(favorito_hinario));
+    ons.notification.toast('Adicionado aos favoritos.', { buttonLabel: 'Ok', timeout: 1500 });
     return 'yellow';
   },
   retirarFavorioHinario: function(hinario, id_hinario) {
@@ -229,6 +230,7 @@ var app = {
     localStorage.removeItem(favorito_hinario);
     localStorage.setItem("lista-favorito-hinario", JSON.stringify(array));
     this.listaFavorioHinario();
+    ons.notification.toast('Removido dos favoritos.', { buttonLabel: 'Ok', timeout: 1500 });
   },
   listaFavorioHinario: function() {
     var link = '';

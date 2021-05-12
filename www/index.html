@@ -2063,6 +2063,7 @@
           var cor_favorito = app.buscaFavorioHinario('harpa', dados[0]);
           $("#favoritar_harpa").css('color',cor_favorito);
           $( "#favoritar_harpa" ).click(function() {
+            var cor_favorito = app.buscaFavorioHinario('harpa', dados[0]);
             if(cor_favorito == '#f5f5f5'){
               app.incluirFavorioHinario('harpa', dados[0], dados[1]);
               $(this).css('color','yellow');
@@ -2091,16 +2092,7 @@
         <div class="center"></div>
     </ons-toolbar>
 
-
-    <ons-list id="listaFavoritos">
-     <ons-list-item class="showAd list-item list-item--material" onclick="fn.pushPage({'id': 'conteudoHarpa.html', 'title': '1||CHUVAS DE GRAÇA'})" modifier="material">
-        <div class="center list-item__center list-item--material__center" style="font-size: 15px;">1 - CHUVAS DE GRAÇA</div>
-        <div class="left list-item__left list-item--material__left"></div>
-        <div class="right list-item__right list-item--material__right">
-           <ons-icon icon="fa-angle-right" class="ons-icon fa-angle-right fa" modifier="material"></ons-icon>
-        </div>
-     </ons-list-item>
-    </ons-list>
+    <ons-list id="listaFavoritos"></ons-list>
 
     <script>
         ons.getScriptPage().onInit = function () {
@@ -2895,6 +2887,7 @@
           var cor_favorito = app.buscaFavorioHinario('cantor', dados[0]);
           $("#favoritar_cantor").css('color',cor_favorito);
           $( "#favoritar_cantor" ).click(function() {
+            var cor_favorito = app.buscaFavorioHinario('cantor', dados[0]);
             if(cor_favorito == '#f5f5f5'){
               app.incluirFavorioHinario('cantor', dados[0], dados[1]);
               $(this).css('color','yellow');
